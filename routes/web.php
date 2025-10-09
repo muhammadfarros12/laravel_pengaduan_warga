@@ -14,6 +14,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/home2', Home::class)->name('home2');
 Route::get('/laporan', Home::class)->name('laporan');
+Route::get('/guest', function () {
+    return view('components.layouts.guest');
+})->name('guest');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
