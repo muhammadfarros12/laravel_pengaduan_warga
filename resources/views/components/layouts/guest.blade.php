@@ -56,6 +56,7 @@
             }
         }
     </style>
+    @livewireStyles()
 </head>
 
 <body>
@@ -67,7 +68,7 @@
 
             <div class="container">
 
-                {{-- {{ $slot }} --}}
+                {{ $slot }}
 
                 <livewire:atom.footer />
             </div>
@@ -78,6 +79,9 @@
     <script src="{{ asset('mazer/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('mazer/assets/compiled/js/app.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/dashboard.js') }}"></script>
+    @livewireScripts()
+
+    @yield('scripts')
 </body>
 
 </html>

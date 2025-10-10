@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="mazer/assets/compiled/css/iconly.css">
 
     <title>{{ $title ?? 'Page Title' }}</title>
+    @livewireStyles()
+    @yield('styles')
 </head>
 
 <body>
@@ -39,6 +41,7 @@
     <!-- Need: Apexcharts -->
     <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
     <script src="assets/static/js/pages/dashboard.js"></script>
+    @livewireScripts()()
 </body>
 
 </html>
