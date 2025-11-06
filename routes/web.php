@@ -13,12 +13,15 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware('auth')->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home2', Home::class)->name('home2');
 Route::get('/guest/complaint-form', ComplaintForm::class)->name('guest.complaint.form');
 Route::get('/guest/all-complaint', AllComplaints::class)->name('guest.all.complaint');
 Route::get('/guest/statistics', Statistica::class)->name('guest.statistics');
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/', Home::class)->name('admin.dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

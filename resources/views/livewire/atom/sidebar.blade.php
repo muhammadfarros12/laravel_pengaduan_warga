@@ -46,8 +46,8 @@
                 <ul class="menu">
                     <li class="sidebar-title">Menu</li>
 
-                    <li class="sidebar-item active ">
-                        <a href="{{ route('home2') }}" class='sidebar-link'>
+                    <li class="sidebar-item active">
+                        <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -56,7 +56,8 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="{{ route('laporan') }}" class='sidebar-link'>
+                        {{-- <a href="{{ route('laporan') }}" class='sidebar-link'> --}}
+                        <a href="" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Laporan</span>
                         </a>
@@ -69,18 +70,9 @@
                             <i class="bi bi-person-square"></i>
                             <span>Profile</span>
                         </a>
-
-
                     </li>
 
-                    <li class="sidebar-item ">
-                        <a href="form-layout.html" class='sidebar-link'>
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Logout</span>
-                        </a>
-
-
-                    </li>
+                    <livewire:auth.logout />
 
                 </ul>
             </div>
