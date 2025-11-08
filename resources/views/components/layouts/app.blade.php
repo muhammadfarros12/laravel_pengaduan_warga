@@ -11,11 +11,16 @@
         type="image/png">
 
 
-    <link rel="stylesheet" href="mazer/assets/compiled/css/app.css">
+    <link rel="stylesheet" href="{{ asset("mazer/assets/compiled/css/app.css") }}">
+    {{-- <link rel="stylesheet" href="mazer/assets/compiled/css/app.css"> --}}
     <link rel="stylesheet" href="mazer/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="mazer/assets/compiled/css/iconly.css">
 
-    <title>{{ $title ?? 'Page Title' }}</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <title>@yield('title', 'dashboard')</title>
     @livewireStyles()
     @yield('styles')
 </head>
@@ -35,13 +40,22 @@
         <livewire:atom.footer />
     </div>
 
-    <script src="assets/static/js/components/dark.js"></script>
-    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/compiled/js/app.js"></script>
+    <script src="mazer/assets/static/js/components/dark.js"></script>
+    <script src="mazer/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="mazer/assets/compiled/js/app.js"></script>
     <!-- Need: Apexcharts -->
-    <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/static/js/pages/dashboard.js"></script>
-    @livewireScripts()()
+    <script src="mazer/assets/extensions/apexcharts/apexcharts.min.js"></script>
+    <script src="mazer/assets/static/js/pages/dashboard.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
+    @livewireScripts()
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        })
+    </script>
+
 </body>
 
 </html>

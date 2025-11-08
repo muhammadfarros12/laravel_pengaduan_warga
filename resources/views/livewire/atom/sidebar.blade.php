@@ -63,6 +63,13 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item">
+                        <a href="{{ route('admin.users') }}" class='sidebar-link'>
+                            <i class="bi bi-people-fill"></i>
+                            <span>Master Users</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-title">Akun</li>
 
                     <li class="sidebar-item">

@@ -10,11 +10,11 @@
                 @if(Auth::check())
                 <a href="
                     @if(Auth::user()->role == 'admin')
-                        {{ route('admin.index') }}
+                        {{ route('admin.dashboard') }}
                     @else
                         #
                     @endif
-                " class="btn btn-primary">Menuju fitur</a>
+                " class="btn btn-primary">Admin Dashboard</a>
                 @endif
 
                 <div class="header-top-right">

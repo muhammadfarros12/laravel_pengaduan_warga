@@ -1,8 +1,5 @@
 @section('title', 'Dashboard')
 <div>
-    <div class="page-heading">
-        <h3>Profile Statistics</h3>
-    </div>
     <div class="page-content">
         <section class="column">
             <div class="col-12">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Dashboard\Home;
+use App\Livewire\Dashboard\Users;
 use App\Livewire\Guest\AllComplaints;
 use App\Livewire\Guest\ComplaintForm;
 use App\Livewire\Guest\Statistica;
@@ -21,6 +22,8 @@ Route::get('/guest/statistics', Statistica::class)->name('guest.statistics');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', Home::class)->name('admin.dashboard');
+    Route::get('/users', Users::class)->name('admin.users');
+
 });
 
 Route::middleware('auth')->group(function () {
