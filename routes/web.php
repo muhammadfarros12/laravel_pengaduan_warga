@@ -16,9 +16,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/guest/complaint-form', ComplaintForm::class)->name('guest.complaint.form');
-Route::get('/guest/all-complaint', AllComplaints::class)->name('guest.all.complaint');
-Route::get('/guest/statistics', Statistica::class)->name('guest.statistics');
+Route::get('/complaint-form', ComplaintForm::class)->name('guest.complaint.form');
+Route::get('/', AllComplaints::class)->name('guest.all.complaint');
+Route::get('/statistics', Statistica::class)->name('guest.statistics');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', Home::class)->name('admin.dashboard');

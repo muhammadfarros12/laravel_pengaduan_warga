@@ -1,5 +1,12 @@
 @section('title','Form Pengaduan')
 <div>
+
+    @if (Auth::check() && Auth::user()->role == 'admin')
+    <div class="page-heading">
+        <h3>Anda Admin</h3>
+        <p>Tidak bisa melakukan laporan</p>
+    </div>
+    @else
     <div class="page-heading">
         <h3>Form Pengaduan Masyarakat</h3>
     </div>
@@ -62,4 +69,6 @@
                 </div>
             </div>
         </section>
+    @endif
+
 </div>

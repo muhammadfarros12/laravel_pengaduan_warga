@@ -51,20 +51,20 @@
         <nav class="main-navbar">
             <div class="container d-flex justify-content-center align-items-center">
                 <ul>
-                    <li class="menu-item">
-                        <a href="" class='menu-link'>
+                    <li class="menu-item {{ request()->routeIs('guest.complaint.form') ? 'active' : '' }}">
+                        <a href="{{ route('guest.complaint.form') }}" wire:navigate class='menu-link'>
                             <div><i class="bi bi-card-checklist fs-5 me-2"></i> Form Pengaduan</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
-                        <a href="" class='menu-link'>
+                    <li class="menu-item {{ request()->routeIs('guest.all.complaint') ? 'active' : '' }}">
+                        <a href="{{ route('guest.all.complaint') }}" wire:navigate class='menu-link'>
                             <div><i class="bi bi-newspaper fs-5 me-2"></i> Semua Pengaduan</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
-                        <a href="" class='menu-link'>
+                    <li class="menu-item {{ request()->routeIs('guest.statistics') ? 'active' : '' }}">
+                        <a href="{{ route('guest.statistics') }}" class='menu-link' wire:navigate>
                             <div><i class="bi bi-graph-up fs-5 me-2"></i> Data Statistik</div>
                         </a>
                     </li>
