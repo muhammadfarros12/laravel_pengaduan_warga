@@ -37,7 +37,7 @@
         </header>
         {{ $slot }}
 
-        <livewire:atom.footer />
+
     </div>
 
     <script src="mazer/assets/static/js/components/dark.js"></script>
@@ -49,13 +49,14 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    @livewireScripts()
-
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
         })
     </script>
+    
+    @livewireScripts()
+
 
 </body>
 

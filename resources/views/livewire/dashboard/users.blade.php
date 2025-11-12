@@ -1,6 +1,5 @@
 @section('title', 'Users Dashboard')
 <div>
-
     <div class="container mt-5">
         <section id="multiple-column-form">
             <div class="row match-height">
@@ -11,34 +10,42 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <form class="form">
+                                <form wire:submit='store' class="form">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mb-3">
                                             <div class="form-group">
                                                 <label for="first-name-column">Nama Lengkap</label>
-                                                <input type="text" id="" class="form-control"
-                                                    placeholder="Nama Lengkap" name="" required>
+                                                <input wire:model='name' type="text" class="form-control"
+                                                    placeholder="Nama Lengkap" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-3">
                                             <div class="form-group">
                                                 <label for="country-floating">Email</label>
-                                                <input type="email" id="" class="form-control" name=""
-                                                    placeholder="Email" required>
+                                                <input wire:model='email' type="email" id=""
+                                                    class="form-control" name="" placeholder="Email" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-3">
                                             <div class="form-group">
-                                                <label for="last-name-column">Nomor Telepon</label>
-                                                <input type="text" id="" class="form-control"
-                                                    placeholder="Nomor Telepon" name="" required>
+                                                <label for="last-name-column">Nomor Whatsapp</label>
+                                                <input wire:model='whatsapp' type="text" class="form-control"
+                                                    placeholder="Nomor Whatsapp" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-3">
                                             <div class="form-group">
                                                 <label for="city-column">Password</label>
-                                                <input type="password" id="" class="form-control"
-                                                    placeholder="Masukkan Password" name="" required>
+                                                <input wire:model='password' type="password" class="form-control"
+                                                    placeholder="Masukkan Password" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-3">
+                                            <div class="form-group">
+                                                <label for="last-name-column">Address</label>
+                                                <textarea wire:model='address' id="" class="form-control" placeholder="Alamat tinggal" rows="5"
+                                                    wrap="soft" name=""></textarea>
                                             </div>
                                         </div>
 
@@ -73,7 +80,7 @@
                                                     <td>{{ $user->email }}</td>
                                                     <td>
                                                         <button class="btn btn-success">Detail</button>
-                                                        <button class="btn btn-warning">Edit</button>
+                                                        <button wire:click='confirmEdit({{ $user->id }})' class="btn btn-warning">Edit</button>
                                                         @if (Auth::user()->id == $user->id)
                                                             <button class="btn btn-danger" disabled>Delete</button>
                                                         @else
@@ -96,6 +103,7 @@
     </div>
 
     @include('components.partials.delete-modal')
+    @include('livewire.dashboard.user-partials.edit-modal')
 
     <script>
         window.addEventListener('show-delete-modal', () => {
@@ -107,6 +115,29 @@
             var modalEl = document.getElementById('deleteModal');
             var modal = bootstrap.Modal.getInstance(modalEl);
             modal.hide();
+        });
+
+        window.addEventListener('show-edit-user-modal', () => {
+            var modal = new bootstrap.Modal(document.getElementById('editUserModal'));
+            modal.show();
+        });
+
+        window.addEventListener('hide-delete-modal', () => {
+            var modalEl = document.getElementById('deleteModal');
+            var modal = bootstrap.Modal.getInstance(modalEl);
+            modal.hide();
+        });
+
+            // Event listener untuk menangani penutupan modal (klik backdrop atau ESC)
+        document.addEventListener('DOMContentLoaded', function() {
+            const editModal = document.getElementById('editUserModal');
+
+            if(editModal) {
+                editModal.addEventListener('hidden.bs.modal', function () {
+                    // Trigger Livewire method untuk reset form
+                    @this.call('cancelEdit');
+                });
+            }
         });
     </script>
 </div>
