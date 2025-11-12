@@ -1,12 +1,12 @@
 @section('title', 'Data Statistik Pengaduan')
 
-<div>
+<div class="d-flex flex-column" style="min-height: 65vh">
     <div class="page-heading">
         <h3>Laporan Jumlah Pengaduan</h3>
     </div>
     <div class="page-content">
         <section class="row">
-            <div class="col-12 col-lg-12">
+            <div class="col-12 col-lg-9">
                 <div class="row">
                     <div class="col-6 col-lg-3 col-md-6">
                         <div class="card">
@@ -18,8 +18,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Total Pengaduan</h6>
-                                        <h6 class="font-extrabold mb-0">112.000</h6>
+                                        <h6 class="text-muted font-semibold">Total Laporan</h6>
+                                        <h6 class="font-extrabold mb-0">{{$totalReports}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Pending</h6>
-                                        <h6 class="font-extrabold mb-0">183.000</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $pendingReports }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Diproses</h6>
-                                        <h6 class="font-extrabold mb-0">80.000</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $inProcessReports }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -70,43 +70,96 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Selesai</h6>
-                                        <h6 class="font-extrabold mb-0">112</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $completedReports }}</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Laporan Pengaduan Per Bulan {{date('Y')}}</h4>
+                            </div>
+                            <div class="card-body">
+                                <div id="grafik-laporan-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Laporan Per Kategori</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="grafik-laporan-pie"></div>
+                    </div>
+                </div>
             </div>
         </section>
-        <div class="card">
-            <div class="card-header">
-                <h4>Statistik Pengaduan</h4>
-            </div>
-            <div class="card-body">
-                <div id="chart-pengaduan"></div>
-            </div>
-        </div>
     </div>
 </div>
 
 @section('scripts')
     <script src="{{asset('mazer/assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
     <script>
-        var options = {
-            series: [30, 80, 25],
-            chart: {
-                type: 'pie',
-                height: 350
-            },
-            labels: ['Pending', 'Diproses', 'Selesai'],
-            colors: ['#ff7976', '#57caeb', '#5ddab4'],
-            legend: {
-                position: 'bottom',
-                horizontalAlign: 'center'
+        // var options = {
+        //     series: [30, 80, 25],
+        //     chart: {
+        //         type: 'pie',
+        //         height: 350
+        //     },
+        //     labels: ['Pending', 'Diproses', 'Selesai'],
+        //     colors: ['#ff7976', '#57caeb', '#5ddab4'],
+        //     legend: {
+        //         position: 'bottom',
+        //         horizontalAlign: 'center'
+        //     }
+        // };
+        // var chart = new ApexCharts(document.querySelector("#chart-pengaduan"), options);
+        // chart.render();
+
+    let laporanPerBulan = @json($monthlyReport);
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+
+    new ApexCharts(document.querySelector("#grafik-laporan-bar"), {
+        series: [{
+            name: 'Laporan',
+            data: months.map((m,i) => laporanPerBulan[String(i+1).padStart(2, '0')] ?? 0)
+        }],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        xaxis: {
+            categories: months
+        }
+    }).render();
+
+    new ApexCharts(document.querySelector("#grafik-laporan-pie"), {
+        series: [<?= $pendingReports ?>, <?= $inProcessReports ?>, <?= $completedReports ?>],
+        labels: ['Pending', 'Diproses', 'Selesai'],
+        colors: ['#ff7976', '#57caeb', '#5ddab4'],
+        chart: {
+            type: 'pie',
+            height: 350
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '70%'
+                }
             }
-        };
-        var chart = new ApexCharts(document.querySelector("#chart-pengaduan"), options);
-        chart.render();
+        },
+        legend: {
+            position: 'bottom'
+        }
+    }).render();
+
+
     </script>
 @endsection
