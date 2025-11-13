@@ -20,10 +20,15 @@ Route::get('/complaint-form', ComplaintForm::class)->name('guest.complaint.form'
 Route::get('/', AllComplaints::class)->name('guest.all.complaint');
 Route::get('/statistics', Statistica::class)->name('guest.statistics');
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/', Home::class)->name('admin.dashboard');
     Route::get('/users', Users::class)->name('admin.users');
 
+});
+
+Route::prefix('user')->middleware(['auth', 'isUser'])->group(function () {
+    Route::get('/', App\Livewire\User\UserDashboard::class)->name('user.dashboard');
+    Route::get('/complaint-form', App\Livewire\User\CreateReport::class)->name('user.form.complaint');
 });
 
 Route::middleware('auth')->group(function () {

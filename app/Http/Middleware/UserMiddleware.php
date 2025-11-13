@@ -17,7 +17,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) { # true / false
-            if (Auth::user()->role == 'user') {
+            if (Auth::user()->role == 'warga') {
                 return $next($request);
             } else {
                 return redirect('/admin')->with('message', 'Akses ditolak, Anda bukan user biasa');
