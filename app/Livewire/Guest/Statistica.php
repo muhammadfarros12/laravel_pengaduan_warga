@@ -15,7 +15,7 @@ class Statistica extends Component
     public function mount(){
         $this->totalReports = Report::count();
         $this->pendingReports = Report::where('status', 'pending')->count();
-        $this->inProcessReports = Report::where('status', 'diproses')->count();
+        $this->inProcessReports = Report::where('status', 'proses')->count();
         $this->completedReports = Report::where('status', 'selesai')->count();
 
         $this->monthlyReport = Report::whereYear('time_report', now()->year)

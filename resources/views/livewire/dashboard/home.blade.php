@@ -1,4 +1,16 @@
 @section('title', 'Dashboard')
+
+<style>
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
 <div>
     <div class="page-content">
         <section class="column">
@@ -8,14 +20,14 @@
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
                                         <div class="stats-icon purple mb-2">
-                                            <i class="iconly-boldShow"></i>
+                                            <i class="bi-chat"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Profile Views</h6>
-                                        <h6 class="font-extrabold mb-0">112.000</h6>
+                                        <h6 class="text-muted font-semibold">Total Pengaduan</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $totalLaporan }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -27,12 +39,12 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon blue mb-2">
-                                            <i class="iconly-boldProfile"></i>
+                                            <i class="bi-hourglass" style="display: inline-block; animation: spin 3s linear infinite;"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Followers</h6>
-                                        <h6 class="font-extrabold mb-0">183.000</h6>
+                                        <h6 class="text-muted font-semibold">Laporan Pending</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $laporanPending }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -44,12 +56,12 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon green mb-2">
-                                            <i class="iconly-boldAdd-User"></i>
+                                            <i class="bi-arrow-repeat" style="display: inline-block; animation: spin 3s linear infinite;"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Following</h6>
-                                        <h6 class="font-extrabold mb-0">80.000</h6>
+                                        <h6 class="text-muted font-semibold">Laporan Proses</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $laporanDiproses }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -61,12 +73,12 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon red mb-2">
-                                            <i class="iconly-boldBookmark"></i>
+                                            <i class="bi-check-circle"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Saved Post</h6>
-                                        <h6 class="font-extrabold mb-0">112</h6>
+                                        <h6 class="text-muted font-semibold">Laporan selesai</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $laporanSelesai }}</h6>
                                     </div>
                                 </div>
                             </div>

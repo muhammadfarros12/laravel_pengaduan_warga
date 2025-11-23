@@ -49,12 +49,13 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
+    @stack('js')
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
         })
     </script>
-    
+
     @livewireScripts()
 
 

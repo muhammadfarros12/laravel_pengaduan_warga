@@ -15,7 +15,7 @@ class Report extends Model
         'time_report'
     ];
 
-    public function reporter()
+    public function user()
     {
         return $this->belongsTo(User::class, 'reporter_id');
     }
