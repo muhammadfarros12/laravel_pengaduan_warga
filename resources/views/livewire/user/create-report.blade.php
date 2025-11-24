@@ -126,11 +126,12 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            {{-- @if ($gambar)
+                                            @if ($image)
                                             <div class="mt-2">
-                                                <img src="{{ $gambar->temporaryUrl() }}" alt="Preview" class="img-thumbnail" width="150">
+                                                <p class="mb-1"><strong>Preview:</strong></p>
+                                                <img src="{{ $image->temporaryUrl() }}" alt="Preview" style="max-width: 200px;">
                                             </div>
-                                            @endif --}}
+                                        @endif
                                         </div>
 
 

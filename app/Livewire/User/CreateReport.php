@@ -24,15 +24,16 @@ class CreateReport extends Component
         $this->validate();
 
         if ($this->image) {
-            $this->image->storeAs('public/reports', $this->image->getClientOriginalName());
-            $imageName = $this->image->getClientOriginalName();
+             // Simpan ke storage/app/public/reports
+             $fileName = time() . '_' . $this->image->getClientOriginalName();
+             $imagePath = $this->image->storeAs('reports', $fileName, 'public');
         }
 
         Report::create([
             'reporter_id' => Auth::id(),
             'title' => $this->title,
             'detail' => $this->description,
-            'photo' => $this->image ? $imageName : null,
+            'photo' => $imagePath,
             'status' => 'pending',
             'time_report' => $this->timeReport,
         ]);
