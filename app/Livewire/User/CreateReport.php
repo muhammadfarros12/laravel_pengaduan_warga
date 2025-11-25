@@ -23,6 +23,8 @@ class CreateReport extends Component
     public function save() {
         $this->validate();
 
+        $imagePath = null;
+        
         if ($this->image) {
              // Simpan ke storage/app/public/reports
              $fileName = time() . '_' . $this->image->getClientOriginalName();

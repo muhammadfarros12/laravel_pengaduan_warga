@@ -13,7 +13,8 @@ class Report extends Model
         'detail',
         'photo',
         'status',
-        'time_report'
+        'time_report',
+        'response'
     ];
 
     public function user()

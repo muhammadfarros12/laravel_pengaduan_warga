@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Dashboard\Home;
 use App\Livewire\Dashboard\Laporan;
+use App\Livewire\Dashboard\LaporanUpdate;
 use App\Livewire\Dashboard\Users;
 use App\Livewire\Guest\AllComplaints;
 use App\Livewire\Guest\ComplaintForm;
@@ -25,6 +26,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/', Home::class)->name('admin.dashboard');
     Route::get('/users', Users::class)->name('admin.users');
     Route::get('/complaints', Laporan::class)->name('admin.complaints');
+    Route::get('/complaints/{id}/edit', LaporanUpdate::class)->name('admin.complaints.update');
 });
 
 Route::prefix('user')->middleware(['auth', 'isUser'])->group(function () {
