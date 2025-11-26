@@ -31,96 +31,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($this->data as $value)
                                 <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 1"></td>
-                                    <td>John Doe</td>
-                                    <td>Pengaduan Kebersihan</td>
-                                    <td><span class="badge bg-success">Selesai</span></td>
+                                    <td>
+                                        @if ($value->photo)
+                                            <img src="{{ asset('storage/' . $value->photo) }}"
+                                                alt="{{ $value->title }}" class="img-fluid"
+                                                style="max-width: 80px; height: auto">
+                                        @else
+                                            <span class="text-muted">Tidak ada foto</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $value->user->name ?? $value->guest_name }}
+                                    </td>
+                                    <td>
+                                        {{ $value->title }}
+                                    </td>
+                                    <td><span class="badge"
+                                            style="
+                                    background-color:
+                                    @if ($value->status == 'pending') #ff7976
+                                    @elseif($value->status == 'selesai') #5ddab4
+                                    @else #57caeb @endif">{{ strtoupper($value->status) }}</span>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 2"></td>
-                                    <td>Jane Smith</td>
-                                    <td>Pengaduan Lalu Lintas</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 3"></td>
-                                    <td>Ali Ahmad</td>
-                                    <td>Pengaduan Kerusakan Jalan</td>
-                                    <td><span class="badge bg-danger">Dalam Proses</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 1"></td>
-                                    <td>John Doe</td>
-                                    <td>Pengaduan Kebersihan</td>
-                                    <td><span class="badge bg-success">Selesai</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 2"></td>
-                                    <td>Jane Smith</td>
-                                    <td>Pengaduan Lalu Lintas</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 3"></td>
-                                    <td>Ali Ahmad</td>
-                                    <td>Pengaduan Kerusakan Jalan</td>
-                                    <td><span class="badge bg-danger">Dalam Proses</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 1"></td>
-                                    <td>John Doe</td>
-                                    <td>Pengaduan Kebersihan</td>
-                                    <td><span class="badge bg-success">Selesai</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 2"></td>
-                                    <td>Jane Smith</td>
-                                    <td>Pengaduan Lalu Lintas</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 3"></td>
-                                    <td>Ali Ahmad</td>
-                                    <td>Pengaduan Kerusakan Jalan</td>
-                                    <td><span class="badge bg-danger">Dalam Proses</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 1"></td>
-                                    <td>John Doe</td>
-                                    <td>Pengaduan Kebersihan</td>
-                                    <td><span class="badge bg-success">Selesai</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 2"></td>
-                                    <td>Jane Smith</td>
-                                    <td>Pengaduan Lalu Lintas</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 3"></td>
-                                    <td>Ali Ahmad</td>
-                                    <td>Pengaduan Kerusakan Jalan</td>
-                                    <td><span class="badge bg-danger">Dalam Proses</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 1"></td>
-                                    <td>John Doe</td>
-                                    <td>Pengaduan Kebersihan</td>
-                                    <td><span class="badge bg-success">Selesai</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 2"></td>
-                                    <td>Jane Smith</td>
-                                    <td>Pengaduan Lalu Lintas</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://placehold.co/150x100" alt="Gambar 3"></td>
-                                    <td>Ali Ahmad</td>
-                                    <td>Pengaduan Kerusakan Jalan</td>
-                                    <td><span class="badge bg-danger">Dalam Proses</span></td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
