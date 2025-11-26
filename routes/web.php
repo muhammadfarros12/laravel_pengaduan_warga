@@ -32,6 +32,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 Route::prefix('user')->middleware(['auth', 'isUser'])->group(function () {
     Route::get('/', App\Livewire\User\UserDashboard::class)->name('user.dashboard');
     Route::get('/complaint-form', App\Livewire\User\CreateReport::class)->name('user.form.complaint');
+    Route::get('/complaints', App\Livewire\User\UserLaporan::class)->name('user.complaints');
 });
 
 Route::middleware('auth')->group(function () {

@@ -2,6 +2,7 @@
 <div>
     <div class="page-content">
         <section class="column">
+            <h3 class="text-muted font-semibold">Statistik Pengaduan dari User : {{ Auth::user()->name }}</h3>
             <div class="col-12">
                 <div class="row">
                     <div class="col-6 col-lg-3 col-md-6">

@@ -13,32 +13,41 @@
 
         <li class="sidebar-item {{ request()->routeIs('user.form.complaint') ? 'active' : '' }}">
             <a href="{{ route('user.form.complaint') }}" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-megaphone-fill"></i>
                 <span>Ajukan Pengaduan</span>
             </a>
         </li>
 
-        <li class="sidebar-item has-sub ">
-            <a href="" class='sidebar-link'>
-                <i class="bi bi-megaphone-fill"></i>
-                <span>Track Semua Pengaduan</span>
+        <li class="sidebar-title">Track Semua Pengaduan</li>
+
+        @php
+        $status = request()->query('status');
+    @endphp
+        <li class="sidebar-item {{ request()->routeIs('user.complaints') && !request('status') ? 'active' : '' }}">
+            <a href="{{ route('user.complaints') }}" class='sidebar-link'>
+                <i class="bi bi-chat-fill"></i>
+                <span>Semua Pengaduan/Report</span>
             </a>
-
-            <ul class="submenu submenu-closed" style="--submenu-height: 215px;">
-                <li class="submenu-item">
-                    <a href="" class="submenu-link">Semua Pengaduan</a>
-                </li>
-                <li class="submenu-item">
-                    <a href="" class="submenu-link">Pending</a>
-                </li>
-                <li class="submenu-item">
-                    <a href="" class="submenu-link">Proses</a>
-                </li>
-                <li class="submenu-item">
-                    <a href="" class="submenu-link">Selesai</a>
-                </li>
-            </ul>
-
+        </li>
+        <li
+            class="sidebar-item {{ request()->routeIs('user.complaints') && request('status') === 'pending' ? 'active' : '' }}">
+            <a href="{{ route('user.complaints', ['status' => 'pending']) }}" class='sidebar-link'>
+                <i class="bi bi-hourglass-split"></i>
+                <span>Pending</span></a>
+        </li>
+        <li
+            class="sidebar-item {{ request()->routeIs('user.complaints') && request('status') === 'proses' ? 'active' : '' }}">
+            <a href="{{ route('user.complaints', ['status' => 'proses']) }}" class='sidebar-link'>
+                <i class="bi bi-arrow-repeat"></i>
+                <span>Dalam Proses</span>
+            </a>
+        </li>
+        <li
+            class="sidebar-item {{ request()->routeIs('user.complaints') && request('status') === 'selesai' ? 'active' : '' }}">
+            <a href="{{ route('user.complaints', ['status' => 'selesai']) }}" class='sidebar-link'>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Selesai</span>
+            </a>
         </li>
 
         <li class="sidebar-title">Akun</li>
