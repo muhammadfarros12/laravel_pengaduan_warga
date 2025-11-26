@@ -71,6 +71,7 @@
                                         <thead>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Role</th>
                                             <th>Pilihan</th>
                                         </thead>
                                         <tbody>
@@ -78,8 +79,8 @@
                                                 <tr>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->role }}</td>
                                                     <td>
-                                                        <button class="btn btn-success">Detail</button>
                                                         <button wire:click='confirmEdit({{ $user->id }})' class="btn btn-warning">Edit</button>
                                                         @if (Auth::user()->id == $user->id)
                                                             <button class="btn btn-danger" disabled>Delete</button>
@@ -122,8 +123,8 @@
             modal.show();
         });
 
-        window.addEventListener('hide-delete-modal', () => {
-            var modalEl = document.getElementById('deleteModal');
+        window.addEventListener('hide-edit-user-modal', () => {
+            var modalEl = document.getElementById('editUserModal');
             var modal = bootstrap.Modal.getInstance(modalEl);
             modal.hide();
         });

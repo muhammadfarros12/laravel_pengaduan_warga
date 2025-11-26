@@ -10,6 +10,7 @@ class Users extends Component
 {
     public $users, $deleteId;
     public $name, $email, $whatsapp, $address, $password;
+    public $editId;
     public $isEditingSelf = false;
 
     public function mount()
@@ -44,6 +45,7 @@ class Users extends Component
     public function confirmEdit($id)
     {
         $user = User::find($id);
+        $this->editId = $id;
         $this->name = $user->name;
         $this->email = $user->email;
         $this->whatsapp = $user->whatsapp;
@@ -56,10 +58,10 @@ class Users extends Component
         $this->dispatch('show-edit-user-modal');
     }
 
-    public function updateUser(){
-        // Validasi berbeda berdasarkan apakah edit sendiri atau tidak
+    public function updateUser()
+    {
         if ($this->isEditingSelf) {
-            // Jika edit sendiri, email tidak boleh diubah
+            // Edit diri sendiri, email terkunci
             $this->validate([
                 'name' => 'required|string|max:255',
                 'whatsapp' => 'required|string|max:15',
@@ -67,7 +69,7 @@ class Users extends Component
                 'password' => 'nullable|string|min:8',
             ]);
         } else {
-            // Jika edit user lain, email boleh diubah
+            // Edit user lain, email boleh diganti
             $this->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $this->editId,
@@ -78,6 +80,9 @@ class Users extends Component
         }
 
         $user = User::find($this->editId);
+        if (!$user) {
+            return;
+        }
 
         $dataToUpdate = [
             'name' => $this->name,
@@ -85,27 +90,30 @@ class Users extends Component
             'address' => $this->address,
         ];
 
-        // Hanya update email jika bukan edit sendiri
         if (!$this->isEditingSelf) {
             $dataToUpdate['email'] = $this->email;
         }
 
-        // Update password hanya jika diisi
         if (!empty($this->password)) {
             $dataToUpdate['password'] = bcrypt($this->password);
         }
 
         $user->update($dataToUpdate);
+
+        $this->loadUser();
         $this->resetForm();
         $this->dispatch('hide-edit-user-modal');
     }
 
-    public function confirmDelete($id){
+
+    public function confirmDelete($id)
+    {
         $this->deleteId = $id;
         $this->dispatch('show-delete-modal');
     }
 
-    public function deleteUser(){
+    public function deleteUser()
+    {
         User::find($this->deleteId)->delete();
         $this->dispatch('hide-delete-modal');
         $this->loadUser();
@@ -121,7 +129,7 @@ class Users extends Component
         $this->dispatch('hide-edit-user-modal');
     }
 
-    public function resetForm() {
+    public function resetForm(){
         $this->name = '';
         $this->email = '';
         $this->whatsapp = '';
