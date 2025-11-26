@@ -104,25 +104,8 @@
     </div>
 </div>
 
-@section('scripts')
-    <script src="{{asset('mazer/assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
-    <script>
-        // var options = {
-        //     series: [30, 80, 25],
-        //     chart: {
-        //         type: 'pie',
-        //         height: 350
-        //     },
-        //     labels: ['Pending', 'Diproses', 'Selesai'],
-        //     colors: ['#ff7976', '#57caeb', '#5ddab4'],
-        //     legend: {
-        //         position: 'bottom',
-        //         horizontalAlign: 'center'
-        //     }
-        // };
-        // var chart = new ApexCharts(document.querySelector("#chart-pengaduan"), options);
-        // chart.render();
-
+@push('scripts')
+<script>
     let laporanPerBulan = @json($monthlyReport);
     let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 
@@ -162,4 +145,4 @@
 
 
     </script>
-@endsection
+@endpush

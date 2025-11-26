@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('mazer/assets/compiled/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/assets/compiled/css/app-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/assets/compiled/css/iconly.css') }}">
+    @livewireStyles()
+    @livewireScriptConfig
     <style>
         .logo-pengaduan {
             width: 160px;
@@ -79,9 +81,9 @@
     <script src="{{ asset('mazer/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('mazer/assets/compiled/js/app.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/dashboard.js') }}"></script>
+    <script src="{{ asset('mazer/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     @livewireScripts()
-
-    @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>
