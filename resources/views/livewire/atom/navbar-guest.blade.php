@@ -3,38 +3,41 @@
         <div class="header-top">
             <div class="container">
                 <div class="logo">
-                    <a href="{{url('/')}}">
+                    <a href="{{ url('/') }}">
                         <img src="{{ asset('images/adu.png') }}" class="img-fluid logo-pengaduan" alt="Logo">
                     </a>
                 </div>
-                @if(Auth::check())
-                <a href="
-                    @if(Auth::user()->role == 'admin')
-                        {{ route('admin.dashboard') }}
-                    @else
-                        #
-                    @endif
-                " class="btn btn-primary">Admin Dashboard</a>
-                @endif
 
                 <div class="header-top-right">
 
-                    @if(Auth::check())
+                    @if (Auth::check())
                         <div class="dropdown">
-                            <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" id="topbarUserDropdown"
+                                class="user-dropdown d-flex align-items-center dropend dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="avatar avatar-md2">
-                                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=007bff&color=ffffff" alt="Avatar">
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=007bff&color=ffffff"
+                                        alt="Avatar">
                                 </div>
                                 <div class="text">
-                                    <h6 class="user-dropdown-name">{{ Auth::user()->name }}</h6> <!-- Display user's name -->
-                                    <p class="user-dropdown-status text-sm text-muted">{{ Auth::user()->role }}</p> <!-- Display user's role -->
+                                    <h6 class="user-dropdown-name">{{ Auth::user()->name }}</h6>
+                                    <!-- Display user's name -->
+                                    <p class="user-dropdown-status text-sm text-muted">{{ Auth::user()->role }}</p>
+                                    <!-- Display user's role -->
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
-                                <li><a class="dropdown-item" href="#">My Account</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li> <!-- Assuming you have a named route for logout -->
+                                <li><a class="dropdown-item"
+                                        href="
+                                    @if (Auth::user()->role == 'admin') {{ route('admin.dashboard') }}
+                                    @elseif (Auth::user()->role == 'warga') {{ route('user.dashboard') }}
+                                    @else {{ route('guest.all.complaint') }} @endif">Dashboard</a>
+                                </li>
+                                {{-- <li>
+                                    <hr class="dropdown-divider">
+                                </li> --}}
+                                {{-- <li><a class="dropdown-item" wire:click.prevent="logout">Logout</a></li> --}}
+                                <!-- Assuming you have a named route for logout -->
                             </ul>
                         </div>
                     @else

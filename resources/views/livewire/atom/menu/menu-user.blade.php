@@ -50,14 +50,8 @@
             </a>
         </li>
 
-        <li class="sidebar-title">Akun</li>
+        <li class="sidebar-title">Pengaturan</li>
 
-        <li class="sidebar-item">
-            <a href="#" class='sidebar-link'>
-                <i class="bi bi-person-square"></i>
-                <span>Profile</span>
-            </a>
-        </li>
 
         <livewire:auth.logout />
 

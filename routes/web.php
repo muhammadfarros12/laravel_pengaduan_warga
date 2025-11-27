@@ -8,6 +8,7 @@ use App\Livewire\Dashboard\Users;
 use App\Livewire\Guest\AllComplaints;
 use App\Livewire\Guest\ComplaintForm;
 use App\Livewire\Guest\Statistica;
+use App\Livewire\Profile\UserProfile;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

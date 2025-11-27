@@ -24,7 +24,6 @@
                         <table class="table table-striped" id="pengaduan">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Gambar</th>
                                     <th>Nama Pengadu</th>
                                     <th>Judul Pengaduan</th>
                                     <th>Status</th>
@@ -33,15 +32,6 @@
                             <tbody>
                                 @foreach ($this->data as $value)
                                 <tr>
-                                    <td>
-                                        @if ($value->photo)
-                                            <img src="{{ asset('storage/' . $value->photo) }}"
-                                                alt="{{ $value->title }}" class="img-fluid"
-                                                style="max-width: 80px; height: auto">
-                                        @else
-                                            <span class="text-muted">Tidak ada foto</span>
-                                        @endif
-                                    </td>
                                     <td>
                                         {{ $value->user->name ?? $value->guest_name }}
                                     </td>

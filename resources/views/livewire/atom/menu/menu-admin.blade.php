@@ -49,29 +49,8 @@
         </li>
 
 
-        <li class="sidebar-title">Akun</li>
-
-        <li class="sidebar-item">
-            <a href="#" class='sidebar-link'>
-                <i class="bi bi-person-square"></i>
-                <span>Profile</span>
-            </a>
-        </li>
+        <li class="sidebar-title">Pengaturan</li>
 
         <livewire:auth.logout />
     </ul>
 </div>
-
-@push('js')
-    <script>
-        document.addEventListener("livewire:navigated", () => {
-            document.querySelectorAll('.sidebar-item.has-sub > a')
-                .forEach(link => {
-                    link.addEventListener('click', () => {
-                        let parent = link.closest('.sidebar-item');
-                        parent.classList.toggle('active');
-                    });
-                });
-        });
-    </script>
-@endpush
