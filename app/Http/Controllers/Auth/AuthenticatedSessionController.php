@@ -28,7 +28,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // return redirect()->intended(route('dashboard', absolute: false));
+
+        $user = request()->user();
+
+        if ($user->role == 'admin') {
+            return redirect()->intended('/admin');
+        }
+        elseif ($user->role == 'warga') {
+            return redirect()->intended('/user');
+        }
+        else {
+            Auth::logout();
+            return redirect('/login')->with('error', 'Role tidak dikenali.');
+        }
     }
 
     /**
@@ -42,6 +55,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/guest/all-complaint');
     }
 }
